@@ -5,15 +5,21 @@ Pierre - Feuille - Ciseaux
 - React Native / Node
 - WebSocket
 
-# Installation
+# Installation Serveur Web
 
 - git clone https://github.com/Remi-Petit/PFC.git
 - cd PFC
 - npm install
 
-# Mise en marche
+# Mise en marche Serveur Web
 
 - npm run web
+
+# Installation Serveur WebSocket
+
+- git clone https://github.com/Reikoarts/pfcServer
+
+# Mise en marche Serveur WebSocket
 
 # Introduction
 
