@@ -7,12 +7,13 @@ Pierre - Feuille - Ciseaux
 
 # Installation
 
-
-npm install
+- git clone https://github.com/Remi-Petit/PFC.git
+- cd PFC
+- npm install
 
 # Mise en marche
 
-npm run web
+- npm run web
 
 # Introduction
 
