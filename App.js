@@ -7,9 +7,13 @@ export default function App() {
 
   const [player, setPlayer] = useState();
   const [result, setResult] = useState();
+  const [socketKey, setSocketKey] = useState(1);
 
-  const socketUrl = 'ws://0.tcp.eu.ngrok.io:19849';
-  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
+
+  const [socketUrl, setSocketUrl] = useState('ws://4.tcp.eu.ngrok.io:19377');
+
+  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl, { shouldReconnect: (closeEvent) => true, key: socketKey });
+
 
   const connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
@@ -34,9 +38,16 @@ export default function App() {
     }
   }, [lastMessage]);
 
-  const sendPierre = () => {
-    sendMessage(JSON.stringify({ value: 'pierre' }));
-  }
+  useEffect(() => {
+    if(readyState === ReadyState.CLOSED) {
+      setSocketKey(prev => prev + 1);
+    }
+  }, [readyState]);
+
+
+  // const reconnect = () => {
+  //   setSocketKey(prev => prev + 1);
+  // }
 
   const sendResult = (result) => {
     sendMessage(JSON.stringify({ value: result }));
@@ -64,6 +75,7 @@ export default function App() {
       <View style={styles.player}>
       <Text>Le WebSocket est {connectionStatus}</Text>
       <Text>Vous êtes joueurs {player}</Text>
+      {/* <Button title="reconnect" onPress={reconnect}/> */}
       <Text>{result ? result : <Text>En attente de resultat</Text>}</Text>
         <View style={styles.cards}>
           <Main value="pierre2" onPress={() => sendResult("pierre")} />
