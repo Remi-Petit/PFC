@@ -15,6 +15,7 @@ export default function App() {
   const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl, { shouldReconnect: (closeEvent) => true, key: socketKey });
 
 
+
   const connectionStatus = {
     [ReadyState.CONNECTING]: "Connecting",
     [ReadyState.OPEN]: "Open",
@@ -37,9 +38,12 @@ export default function App() {
     }
   }, [lastMessage]);
 
-  const sendPierre = () => {
-    sendMessage(JSON.stringify({ value: 'pierre' }));
-  }
+  useEffect(() => {
+    setSocketKey(prev => prev + 1);
+  }, [readyState]);
+
+
+  
 
   const sendResult = (result) => {
     sendMessage(JSON.stringify({ value: result }));
