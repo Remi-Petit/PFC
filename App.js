@@ -6,6 +6,9 @@ import Main from "./components/Main";
 export default function App() {
   const [player, setPlayer] = useState();
   const [result, setResult] = useState();
+  const [socketKey, setSocketKey] = useState(1);
+  const [selectedCard, setSelectedCard] = useState(null);
+
 
   const [socketUrl, setSocketUrl] = useState('ws://4.tcp.eu.ngrok.io:19377');
 
@@ -55,9 +58,9 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <View style={styles.player}>
         <View style={styles.cards}>
-          <Main value="pierre1" onPress={() => sendResult("pierre")} />
-          <Main value="feuille1" onPress={() => sendResult("feuille")} />
-          <Main value="ciseaux1" onPress={() => sendResult("ciseaux")} />
+          <Main value="pierre1" onPress={() => sendResult("pierre")} setSelectedCard={setSelectedCard} selectedCard={selectedCard}/>
+          <Main value="feuille1" onPress={() => sendResult("feuille")} setSelectedCard={setSelectedCard} selectedCard={selectedCard}/>
+          <Main value="ciseaux1" onPress={() => sendResult("ciseaux")} setSelectedCard={setSelectedCard} selectedCard={selectedCard}/>
         </View>
       </View>
       <View style={styles.player}>

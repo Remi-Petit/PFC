@@ -4,6 +4,7 @@ import React from "react";
 
 const Main = ({ value, onPress, setSelectedCard, selectedCard }) => {
   const [images, setImages] = useState(require("../img/j1_pierre.png")); // set a default value
+  const [choice, setChoice] = useState(false);
   
 
   useEffect(() => {
