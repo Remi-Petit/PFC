@@ -2,19 +2,20 @@ import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { useState, useEffect } from "react";
 import React from "react";
 
-const Main = ({ value, onPress }) => {
+const Main = ({ value, onPress, setSelectedCard, selectedCard }) => {
   const [images, setImages] = useState(require("../img/j1_pierre.png")); // set a default value
+  
 
   useEffect(() => {
     switch (value) {
       case "pierre1":
-        setImages(require("../img/j1_pierre.png"));
+        setImages(require("../img/card-back.png"));
         break;
       case "feuille1":
-        setImages(require("../img/j1_papier.png"));
+        setImages(require("../img/card-back.png"));
         break;
       case "ciseaux1":
-        setImages(require("../img/j1_ciseaux.png"));
+        setImages(require("../img/card-back.png"));
         break;
       case "pierre2":
         setImages(require("../img/j2_pierre.png"));
@@ -30,9 +31,20 @@ const Main = ({ value, onPress }) => {
     }
   }, [value]);
 
+  const handleCardSelection = () => {
+    if (!selectedCard) {
+      setSelectedCard(value);
+    }
+    setChoice(true);
+    onPress();
+  };
+
   return (
-    <TouchableOpacity style={styles.main} onPress={onPress}>
-      <Image style={styles.card} source={images} />
+    <TouchableOpacity style={styles.main} onPress={handleCardSelection}>
+      <Image
+        style={[styles.card, selectedCard === value && styles.choiceCard]}
+        source={images}
+      />
     </TouchableOpacity>
   );
 };
@@ -50,5 +62,9 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: "lightgrey",
     borderWidth: 1,
+  },
+  choiceCard: {
+    borderWidth: 4,
+    borderColor: "green",
   },
 });
