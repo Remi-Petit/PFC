@@ -2,8 +2,10 @@
 Pierre - Feuille - Ciseaux
 
 # Stacks
-- React Native / Node
+- React Native | Front
+- Node | Back
 - WebSocket
+- Ngrok pour que ce soit accessible via plusieurs appareils, pas seulement en local
 
 # Installation Serveur Web
 
@@ -20,6 +22,8 @@ Pierre - Feuille - Ciseaux
 - git clone https://github.com/Reikoarts/pfcServer
 
 # Mise en marche Serveur WebSocket
+
+- node server.js
 
 # Introduction
 
