@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, Button } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import React, { useEffect, useState } from "react";
 import useWebSocket, { ReadyState } from "react-native-use-websocket";
 import Main from "./components/Main";
@@ -9,12 +9,9 @@ export default function App() {
   const [socketKey, setSocketKey] = useState(1);
   const [selectedCard, setSelectedCard] = useState(null);
 
-
-  const [socketUrl, setSocketUrl] = useState('ws://4.tcp.eu.ngrok.io:19377');
+  const [socketUrl, setSocketUrl] = useState('ws://192.168.1.64:3000');
 
   const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl, { shouldReconnect: (closeEvent) => true, key: socketKey });
-
-
 
   const connectionStatus = {
     [ReadyState.CONNECTING]: "Connecting",
@@ -42,29 +39,17 @@ export default function App() {
     setSocketKey(prev => prev + 1);
   }, [readyState]);
 
-
-  
-
   const sendResult = (result) => {
     sendMessage(JSON.stringify({ value: result }));
   };
-
-  // return (
-  //   <View style={styles.container}>
-  //     <Text>Le WebSocket est {connectionStatus}</Text>
-  //     <Text>Vous êtes joueurs {player}</Text>
-  //     <Text>{result ? result : <Text>En attente de resultat</Text>}</Text>
-  //     <Button title='Pierre' onPress={() => sendPierre()} />
-  //   </View>
-  // );
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.player}>
         <View style={styles.cards}>
-          <Main value="pierre1" onPress={() => sendResult("pierre")} setSelectedCard={setSelectedCard} selectedCard={selectedCard}/>
-          <Main value="feuille1" onPress={() => sendResult("feuille")} setSelectedCard={setSelectedCard} selectedCard={selectedCard}/>
-          <Main value="ciseaux1" onPress={() => sendResult("ciseaux")} setSelectedCard={setSelectedCard} selectedCard={selectedCard}/>
+          <Main value="pierre1"/>
+          <Main value="feuille1"/>
+          <Main value="ciseaux1"/>
         </View>
       </View>
       <View style={styles.player}>
