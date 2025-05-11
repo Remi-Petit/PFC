@@ -17,11 +17,11 @@ Pierre - Feuille - Ciseaux
 
 - npm run web
 
-# Installation Serveur WebSocket
-
-- git clone https://github.com/Reikoarts/pfcServer
-
 # Mise en marche Serveur WebSocket
+
+Le serveur est dans le dossier "server"
+
+- cd server
 
 - node server.js
 
